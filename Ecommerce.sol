@@ -19,6 +19,7 @@ contract Ecommerce {
    uint randomId = 1;
     Product[] public products;
 
+    // To Register a product.
     function registerProducts(string _title, string _description, uint _price) public {
       require(_price > 0, "Minimum price required is 1.")
       Product memory tempProduct;
@@ -29,8 +30,22 @@ contract Ecommerce {
       tempProduct.productId = randomId;
       products.push(tempProduct);
       randomId++;
-
     }
+
+
+    // To buy the product
+
+    function buy(uint _productId) public {
+        require(products[_productId - 1].price == msg.value, "Amount should be exact");
+        require(products[_productId - 1].seller != msg.sender, "Seller cannot buy their own item.");
+        products[_productId - 1].buyer i= msg.sender;
+    }
+
+
+
+
+
+
 
 
 
