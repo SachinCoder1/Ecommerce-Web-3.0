@@ -42,6 +42,14 @@ contract Ecommerce {
     }
 
 
+    // confirm the delivery of product by buyer.
+    function delivery(uint _productId) public {
+       require(products[_productId - 1].buyer == msg.sender, "Sorry. You are not the buyer.");
+       products[_productId-1].delivered = true;
+       products[_productId-1].seller.transfer(products[_productId-1].price);
+    }
+
+
 
 
 
