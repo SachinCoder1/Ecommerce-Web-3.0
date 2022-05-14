@@ -9,8 +9,34 @@ contract Ecommerce {
         string title;
         string description;
         address payable  seller;
+        uint productId;
         uint price;
         address buyer;
         bool delivered
     }
+
+
+   uint randomId = 1;
+    Product[] public products;
+
+    function registerProducts(string _title, string _description, uint _price) public {
+      require(_price > 0, "Minimum price required is 1.")
+      Product memory tempProduct;
+      tempProduct.title=_title;
+      tempProduct.description = _description,
+      tempProduct.price = _price;
+      tempProduct.seller = payable(msg.sender);
+      tempProduct.productId = randomId;
+      products.push(tempProduct);
+      randomId++;
+
+    }
+
+
+
+
+
+
+
+
 }
